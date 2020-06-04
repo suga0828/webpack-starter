@@ -7,8 +7,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    main: path.resolve(__dirname, 'src', 'main.js'),
+    main: path.resolve(__dirname, 'src', 'main.ts'),
   },
+  resolve: { extensions: ['.ts', '.js'] },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
@@ -30,6 +31,7 @@ module.exports = {
     rules: [
       { test: /\.scss$/i, use: ['style-loader', 'css-loader', 'sass-loader'] },
       { test: /\.module\.js$/, use: 'bundle-loader' },
+      { test: /\.ts?$/, use: 'ts-loader' },
     ],
   },
   optimization: {
