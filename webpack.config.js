@@ -1,13 +1,13 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  target: 'web', // <=== can be omitted as default is 'web'
   entry: {
-    app: './src/index.js',
-    vendor: './src/vendor.js',
+    main: path.resolve(__dirname, 'src', 'main.js'),
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -16,23 +16,31 @@ module.exports = {
     port: 9999,
   },
   output: {
-    path: __dirname + '/dist',
-    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: (chunkData) => {
+      return chunkData.chunk.name === 'main' ? '[name].[hash].js' : '[name]/[name].[hash].js';
+    },
   },
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-    new HtmlWebpackPlugin({ title: 'Output Management' }),
+    new CopyPlugin({ patterns: [{ from: 'src/assets', to: 'assets' }] }),
+    new HtmlWebpackPlugin({ template: 'src/index.html' }),
   ],
   module: {
     rules: [
-      { test: /\.s[ac]ss$/i, use: ['style-loader', 'css-loader', 'sass-loader'] },
-      { test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] },
-      { test: /\.(woff|woff2|eot|ttf|otf)$/, use: ['file-loader'] },
+      { test: /\.scss$/i, use: ['style-loader', 'css-loader', 'sass-loader'] },
+      { test: /\.module\.js$/, use: 'bundle-loader' },
     ],
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
     },
   },
 };
