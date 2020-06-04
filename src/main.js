@@ -1,17 +1,21 @@
 import './main.scss';
-import Icon from './assets/icon.png';
+import _ from 'lodash';
 
 function component() {
   const element = document.createElement('div');
+  const btn = document.createElement('button');
 
-  // Lodash, currently included via a script, is required for this line to work
   element.innerHTML = 'Hello webpack';
+  element.innerHTML = _.join(['Hello', 'World', 'from', 'webpack'], ' ');
   element.classList.add('hello');
 
   const myIcon = new Image();
-  myIcon.src = Icon;
+  myIcon.src = 'assets/icon.png';
   myIcon.style.maxWidth = '100px';
 
+  btn.innerHTML = 'Click me and check the console!';
+
+  element.appendChild(btn);
   element.appendChild(myIcon);
 
   return element;
