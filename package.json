@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --color",
+    "start": "webpack-dev-server",
     "build": "webpack"
   },
   "repository": {
@@ -23,7 +23,6 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.0.2",
     "css-loader": "^3.5.3",
-    "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "lodash": "^4.17.15",
     "sass": "^1.26.7",
