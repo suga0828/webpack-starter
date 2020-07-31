@@ -1,3 +1,7 @@
 import './main.scss';
 
-console.log('Hello World from Webpack!')
+import { App } from './App';
+
+const appContainer = document.getElementById('root');
+
+appContainer.insertAdjacentElement('beforeend', App())
