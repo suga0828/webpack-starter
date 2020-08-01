@@ -2,9 +2,9 @@ import { User } from "./api.model";
 
 const BASE_API = 'https://jsonplaceholder.typicode.com/users/';
 
-export const irABuscarUsuarios = (): Promise<any> => fetch(BASE_API).then(resp => resp.json())
+export const irABuscarUsuarios = (): Promise<User[]> => fetch(BASE_API).then(resp => resp.json());
 
-export const irABuscarUsuario = (id: string): Promise<any> => fetch(BASE_API + id).then(resp => resp.json())
+export const irABuscarUsuario = (id: string): Promise<User> => fetch(BASE_API + id).then(resp => resp.json());
 
 export const crearUsuario = async (user: User): Promise<any> => {
   const config = {
@@ -27,4 +27,4 @@ export const actualizarUsuario = async (user: Partial<User>): Promise<any> => {
 }
 
 export const eliminarUsuario = (id: number): Promise<any> => fetch(BASE_API + id, { method: 'DELETE' })
-  .then(response => response.json())
+  .then(response => response.json());

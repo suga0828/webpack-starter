@@ -1,21 +1,40 @@
-export const ListUsers = (): Element => {
-  const container = document.createElement('div');
+import { irABuscarUsuarios } from '../api/api.service';
+import { User } from '../api/api.model';
+
+export const imprimirUsiariosEnContenedor = async (contenedor: Element): Promise<void> => {
+  try {
+    const users: User[] = await irABuscarUsuarios();
+    contenedor.innerHTML = '';
+
+    users.forEach(user => {
+      const liElement: HTMLLIElement = document.createElement('li');
+      liElement.innerHTML = user.name;
+      contenedor.insertAdjacentElement('beforeend', liElement);
+    });
+  }
+  catch (err) {
+    console.log(err);
+    contenedor.innerHTML = 'Hubo un error: ' + err;
+  }
+}
+
+export const Render = (): Element => {
+  const idBoton = 'botonObtener'
 
   const template = `
-    <section>
-      <h1>Tutorial: testing de código asíncrono</h1>
-      <p>En este tutorial vamos a hacer test unitarios de peticiones HTTP hechas con <a href="">Fetch API</a>. Vamos a utilizar una API REST pública: <a href="https://jsonplaceholder.typicode.com/guide.html">JSONPlaceholder - Users</a>.</p>
-      <p>En la medida de lo posible voy a tratar de escribir y generar el código de este tutorial en español.</p>
-    </section>
-    <section>
-      <h2>Obtener Usuarios</h2>
-      <h3>Lista de Usuarios</h3>
-      <ul><>
-    </section>
+    <h3>
+      Lista de Usuarios
+      <button id="${idBoton}">Obtener Usuarios</button>
+    </h3>
+    <ul id="listaUsuarios"></ul>
   `;
 
+  const container = document.createElement('section');
   container.innerHTML = template;
+
+  const botonObtenerUsuarios: HTMLButtonElement =  container.querySelector(`#${idBoton}`);
+  const listContainer: HTMLUListElement = container.querySelector("#listaUsuarios");
+  botonObtenerUsuarios.addEventListener('click', (e) => imprimirUsiariosEnContenedor(listContainer));
 
   return container;
 };
-
