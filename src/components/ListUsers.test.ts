@@ -1,7 +1,7 @@
-import * as Component from '../ListUsers';
+import * as Component from './ListUsers';
 
-import * as API from '../../api/api.service';
-import { User } from '../../api/api.model';
+import * as API from '../api/api.service';
+import { User } from '../api/api.model';
 
 describe('ListUsers component', () => {
   describe('imprimirUsiariosEnContenedor method test suite', () => {
@@ -14,7 +14,20 @@ describe('ListUsers component', () => {
       const container: HTMLUListElement = document.createElement('ul');
 
       Component.imprimirUsiariosEnContenedor(container).then((e) => {
-        expect(container.innerHTML).toBe(`<li>mock user</li>`);
+        expect(container.innerHTML).toBe('<li>mock user</li>');
+      });
+    });
+
+    it('should print error response inside container', async () => {
+      jest.spyOn(API, 'irABuscarUsuarios')
+        .mockImplementation((): Promise<User[]> => (
+          new Promise((_, reject) => reject('Error'))
+      ));
+
+      const container: HTMLUListElement = document.createElement('ul');
+
+      Component.imprimirUsiariosEnContenedor(container).then((e) => {
+        expect(container.innerHTML).toBe('Hubo un error: Error');
       });
     });
   });

@@ -13,7 +13,6 @@ export const imprimirUsiariosEnContenedor = async (contenedor: Element): Promise
     });
   }
   catch (err) {
-    console.log(err);
     contenedor.innerHTML = 'Hubo un error: ' + err;
   }
 }
