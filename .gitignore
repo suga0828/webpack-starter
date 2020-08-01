@@ -5,3 +5,6 @@ package-lock.json
 
 # Compiled
 dist/
+
+# Tests
+coverage/
