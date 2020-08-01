@@ -7,9 +7,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: {
-    main: path.resolve(__dirname, "src", "main.tsx"),
+    main: path.resolve(__dirname, "src", "main.ts"),
   },
-  resolve: { extensions: [".ts", "tsx", ".js", ".jsx"] },
+  resolve: { extensions: [".ts", ".js"] },
   devtool: "inline-source-map",
   devServer: {
     contentBase: path.join(__dirname, "dist"),
