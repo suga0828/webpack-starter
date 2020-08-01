@@ -7,13 +7,13 @@ describe('ListUsers component', () => {
   describe('imprimirUsiariosEnContenedor method test suite', () => {
     it('should print users response inside container', async () => {
       jest.spyOn(API, 'irABuscarUsuarios')
-        .mockImplementation((): Promise<User[]> => (
+        .mockImplementationOnce((): Promise<User[]> => (
           new Promise(resolve => resolve([{ name: 'mock user' } as User]))
       ));
 
       const container: HTMLUListElement = document.createElement('ul');
 
-      Component.imprimirUsiariosEnContenedor(container).then((e) => {
+      Component.imprimirUsiariosEnContenedor(container).then(() => {
         expect(container.innerHTML).toBe('<li>mock user</li>');
       });
     });
@@ -26,13 +26,17 @@ describe('ListUsers component', () => {
 
       const container: HTMLUListElement = document.createElement('ul');
 
-      Component.imprimirUsiariosEnContenedor(container).then((e) => {
-        expect(container.innerHTML).toBe('Hubo un error: Error');
+      Component.imprimirUsiariosEnContenedor(container).then(() => {
+        expect(container.innerHTML).toMatch('Error');
       });
     });
   });
 
   describe('ListUsers method test suite', () => {
+    it('should return ListUser component template', () => {
+      expect(Component.Render()).toMatchSnapshot();
+    });
+
     it('should return a template with a button with id botonObtener', () => {
       const template = Component.Render();
 
@@ -52,7 +56,7 @@ describe('ListUsers component', () => {
 
         boton.dispatchEvent(new Event('click'));
   
-        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledTimes(1);
       });
     })
   });

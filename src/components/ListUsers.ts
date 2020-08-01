@@ -18,22 +18,23 @@ export const imprimirUsiariosEnContenedor = async (contenedor: Element): Promise
 }
 
 export const Render = (): Element => {
-  const idBoton = 'botonObtener'
+  const idBoton = 'botonObtener';
+  const idList = 'listaUsuarios';
 
   const template = `
     <h3>
       Lista de Usuarios
       <button id="${idBoton}">Obtener Usuarios</button>
     </h3>
-    <ul id="listaUsuarios"></ul>
+    <ul id="${idList}"></ul>
   `;
 
   const container = document.createElement('section');
   container.innerHTML = template;
 
   const botonObtenerUsuarios: HTMLButtonElement =  container.querySelector(`#${idBoton}`);
-  const listContainer: HTMLUListElement = container.querySelector("#listaUsuarios");
-  botonObtenerUsuarios.addEventListener('click', (e) => imprimirUsiariosEnContenedor(listContainer));
+  const listContainer: HTMLUListElement = container.querySelector(`#${idList}`);
+  botonObtenerUsuarios.addEventListener('click', () => imprimirUsiariosEnContenedor(listContainer));
 
   return container;
 };

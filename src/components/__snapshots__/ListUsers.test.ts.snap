@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListUsers component ListUsers method test suite should return ListUser component template 1`] = `
+<section>
+  
+    
+  <h3>
+    
+      Lista de Usuarios
+      
+    <button
+      id="botonObtener"
+    >
+      Obtener Usuarios
+    </button>
+    
+    
+  </h3>
+  
+    
+  <ul
+    id="listaUsuarios"
+  />
+  
+  
+</section>
+`;
