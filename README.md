@@ -80,6 +80,10 @@ El código base para este ejemplo lo encuentra en la rama `master` del repositor
 
 ![Décimo Cuarto Paso](./tutorial/carbon-11.png)
 
+16. Por esas cosas mágicas de Javascript hay que hacer un pequeño cambio de código para que el último caso de prueba se cumpla. Modifique el archivo `src/components/ListUsers.ts`:
+
+![Décimo Quinto Paso](./tutorial/carbon-12.png)
+
 ### Development:
 Run the following command for development:
 ```

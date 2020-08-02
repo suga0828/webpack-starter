@@ -34,7 +34,7 @@ export const Render = (): Element => {
 
   const botonObtenerUsuarios: HTMLButtonElement =  container.querySelector(`#${idBoton}`);
   const listContainer: HTMLUListElement = container.querySelector(`#${idList}`);
-  botonObtenerUsuarios.addEventListener('click', () => imprimirUsiariosEnContenedor(listContainer));
+  botonObtenerUsuarios.addEventListener('click', () => exports.imprimirUsiariosEnContenedor(listContainer));
 
   return container;
 };

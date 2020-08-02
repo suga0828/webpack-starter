@@ -2,6 +2,7 @@ interface Geo {
   lat: string;
   lng: string;
 }
+
 interface Address {
   street: string;
   suite: string;

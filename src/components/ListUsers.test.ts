@@ -51,12 +51,13 @@ describe('ListUsers component', () => {
 
     describe('when make click on a button with id botonObtener', () => {
       it('should call imprimirUsiariosEnContenedor', () => {
-        const spy = jest.spyOn(Component, 'imprimirUsiariosEnContenedor');
+        jest.spyOn(Component, 'imprimirUsiariosEnContenedor');
+
         const boton = Component.Render().querySelector('#botonObtener');
 
         boton.dispatchEvent(new Event('click'));
-  
-        expect(spy).toHaveBeenCalledTimes(1);
+
+        expect(Component.imprimirUsiariosEnContenedor).toHaveBeenCalledTimes(1);
       });
     })
   });
