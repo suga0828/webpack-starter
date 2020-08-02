@@ -94,5 +94,5 @@ $ npm run build
 Run the following command for run testing. The coverage output code is placed in `coverage/lcov-report/index.html` folder.
 
 ```
-$ npm run test --coverage
+$ npm run test
 ```
